@@ -36,7 +36,7 @@ abstract class Dto extends BaseDto implements Arrayable, Jsonable
      * @param int $flags
      * @return self
      */
-    public static function fromRequest(Request $request = null, int $flags = NONE): self
+    public static function fromRequest(Request $request = null, int $flags = NONE): static
     {
         $data = $request ? $request->all() : RequestFacade::all();
 
@@ -50,7 +50,7 @@ abstract class Dto extends BaseDto implements Arrayable, Jsonable
      * @param int $flags
      * @return self
      */
-    public static function fromModel(Model $model, int $flags = NONE): self
+    public static function fromModel(Model $model, int $flags = NONE): static
     {
         return static::make($model->toArray(), $flags | CAST_PRIMITIVES | PARTIAL | IGNORE_UNKNOWN_PROPERTIES);
     }
@@ -62,7 +62,7 @@ abstract class Dto extends BaseDto implements Arrayable, Jsonable
      * @param int $flags
      * @return self
      */
-    public static function from($source, int $flags = NONE): self
+    public static function from($source, int $flags = NONE): static
     {
         if ($source instanceof Enumerable) {
             $source = $source->all();
